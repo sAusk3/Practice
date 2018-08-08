@@ -20,13 +20,13 @@ Vector::Vector(int s)
             for(int i=0; i!=s; i++) elem[i]=0;  //initialize elements to 0
         }
 
-Vector::Vector(const Vector& a) : elem{new double[a.sz]}, sz{a.sz}
+Vector::Vector(const Vector& a) : elem{new double[a.sz]}, sz{a.sz} //copy constructor
 {
     for(int i=0,i!=sz; ++i)
     elem[i]=a.elem[i];
 }
 
-Vector& Vector::operator=(const Vector& a)
+Vector& Vector::operator=(const Vector& a) //copy assignment
 {
     double* p= new double[a.sz];
     for(int i=0;i!=a.sz;++i)
