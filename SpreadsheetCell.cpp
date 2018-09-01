@@ -2,6 +2,16 @@
 #include "SpreadsheetCell.h"
 using namespace std;
 
+SpreadsheetCell::SpreadsheetCell(double initialValue)
+{
+    setValue(intialValue);
+}
+
+SpreadsheetCell::SpreadsheetCell(std::string intialValue)
+{
+    setString(intialValue);
+}
+
 void SpreadsheetCell::setValue(double inValue)
 {
     mValue = inValue ;

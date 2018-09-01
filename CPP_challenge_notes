@@ -1,0 +1,25 @@
+Several solutions in the last chapter utilize the libcurl library. For SSL support, this library needs to be linked with the OpenSSL library. Do the following to install OpenSSL:
+
+Download the library from https://www.openssl.org/.
+Unzip the archive and, in a terminal, go to its root directory.
+Build and install the library with the following commands (executed in this order):
+
+./Configure darwin64-x86_64-cc shared enable-ec_nistp_64_gcc_128 no-ssl2 no-ssl3 no-comp --openssldir=/usr/local/ssl/macos-x86_64
+
+make depend
+
+sudo make install
+Until std::optional and the filesystem library will be available with Xcode's Clang, you need to use Boost. Do the following to install and build the Boost libraries:
+
+Install Homebrew from https://brew.sh/.
+Run the following command to download and install Boost automatically.
+
+brew install boost
+After installation, the Boost library will be available at /usr/local/Cellar/boost/1.65.0.
+In order to generate projects for Xcode from the sources you have to:
+
+Open a terminal and go to the build directory in the source code root directory.
+Execute the following CMake command:
+
+cmake -G Xcode .. -DOPENSSL_ROOT_DIR=/usr/local/bin -DOPENSSL_INCLUDE_DIR=/usr/local/include/ -DBUILD_TESTING=OFF -DBUILD_CURL_EXE=OFF -DUSE_MANUAL=OFF -DBOOST_FILESYSTEM=ON -DBOOST_OPTIONAL=ON -DBOOST_INCLUDE_DIR=/usr/local/Cellar/boost/1.65.0 -DBOOST_LIB_DIR=/usr/local/Cellar/boost/1.65.0/lib
+After completion, the Xcode project can be found at build/cppchallenger.xcodeproj.
